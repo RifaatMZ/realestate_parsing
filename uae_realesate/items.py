@@ -17,16 +17,12 @@ class UaeRealesateItem(scrapy.Item):
     _id = scrapy.Field()
     building = scrapy.Field(output_processor=TakeFirst())
     address = scrapy.Field(output_processor=TakeFirst())
-    # coordination = scrapy.Field()
     property_type = scrapy.Field(input_processor=MapCompose(strip_string), output_processor=TakeFirst())
     property_size = scrapy.Field(output_processor=TakeFirst())
     bedrooms = scrapy.Field(input_processor=MapCompose(strip_string), output_processor=TakeFirst())
     bathrooms = scrapy.Field(output_processor=TakeFirst())
     completion = scrapy.Field(input_processor=MapCompose(strip_string), output_processor=TakeFirst())
     price = scrapy.Field(input_processor=MapCompose(strip_string), output_processor=TakeFirst())
-    # reference = scrapy.Field(output_processor=TakeFirst())
-    # broker_ORN = scrapy.Field(output_processor=TakeFirst())
-    # agent_BRN = scrapy.Field(output_processor=TakeFirst())
-    # trackheesi_permit = scrapy.Field(output_processor=TakeFirst())
+
 
 

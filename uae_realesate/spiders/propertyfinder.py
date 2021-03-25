@@ -1,5 +1,4 @@
 import scrapy
-# from scrapy.http import Response
 from uae_realesate.items import UaeRealesateItem
 from scrapy.loader import ItemLoader
 
@@ -17,17 +16,12 @@ class PropertyfinderSpider(scrapy.Spider):
     post_template = {
         'building': '//div[contains(@class, "property-location__detail-area")]/div[1]/text()',
         'address': '//div[contains(@class, "property-location__detail-area")]/div[last()]/text()',
-        # 'coordination': '',
         'property_type': '//div[contains(@class, "property-facts__column")][1]/div[contains(@class, "property-facts__list")][1]/div[2]/text()',
         'property_size': '//div[contains(@class, "property-facts__column")][1]/div[contains(@class, "property-facts__list")][2]//span[2]/text()',
         'bedrooms': '//div[contains(@class, "property-facts__column")][2]/div[contains(@class, "property-facts__list")][1]/div[2]/text()',
         'bathrooms': '//div[contains(@class, "property-facts__column")][2]/div[contains(@class, "property-facts__list")][2]/div[2]/text()',
         'completion': '//div[contains(@class, "property-facts__column")][1]/div[contains(@class, "property-facts__list")][3]/div[2]/text()',
         'price': '//div[contains(@class, "property-price")]/text()'
-        # 'reference': '//div[contains(@class, "property-page__legal-left-area")]/div[1]/div[2]/text()',
-        # 'broker_ORN': '//div[contains(@class, "property-page__legal-right-area")]/div[1]/div[2]/text()',
-        # 'agent_BRN': '//div[contains(@class, "property-page__legal-right-area")]/div[2]/div[2]/text()',
-        # 'trackheesi_permit': '//div[contains(@class, "property-page__legal-left-area")]/div[2]/div[2]/text()'
     }
 
     def parse(self, response):
@@ -49,9 +43,5 @@ class PropertyfinderSpider(scrapy.Spider):
         item.add_xpath('bathrooms', self.post_template['bathrooms'])
         item.add_xpath('completion', self.post_template['completion'])
         item.add_xpath('price', self.post_template['price'])
-        # item.add_xpath('reference', self.post_template['reference'])
-        # item.add_xpath('broker_ORN', self.post_template['broker_ORN'])
-        # item.add_xpath('agent_BRN', self.post_template['agent_BRN'])
-        # item.add_xpath('trackheesi_permit', self.post_template['trackheesi_permit'])
 
         yield item.load_item()
